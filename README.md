@@ -1,6 +1,6 @@
 # atlassian-skill
 
-A [Claude Code](https://claude.ai/code) skill for Jira and Bitbucket operations via [`atlassian-cli`](https://github.com/ankitpokhrel/jira-cli). Handles issue creation, transitions, PR management, and Markdown → ADF conversion — with zero external Node dependencies.
+A [Claude Code](https://claude.ai/code) skill for Jira and Bitbucket operations via [`atlassian-cli`](https://github.com/omar16100/atlassian-cli). Handles issue creation, transitions, PR management, and Markdown → ADF conversion — with zero external Node dependencies.
 
 ## What it does
 
@@ -15,16 +15,28 @@ A [Claude Code](https://claude.ai/code) skill for Jira and Bitbucket operations 
 ## Requirements
 
 - [Bun](https://bun.sh) — runtime for `md-to-adf.ts`
-- [`atlassian-cli`](https://github.com/ankitpokhrel/jira-cli) — authenticated and on `$PATH`
+- [`atlassian-cli`](https://github.com/omar16100/atlassian-cli) — authenticated and on `$PATH`
 - Claude Code (CLI, desktop app, or IDE extension)
+
+### Install `atlassian-cli`
+
+```sh
+# macOS
+brew install omar16100/tap/atlassian-cli
+
+# Or download a binary from the releases page:
+# https://github.com/omar16100/atlassian-cli/releases
+```
 
 ### Authenticate `atlassian-cli`
 
 ```sh
-atlassian-cli init
+atlassian-cli config set --base-url https://<your-domain>.atlassian.net \
+                         --email <you@example.com> \
+                         --token <api-token>
 ```
 
-Follow the prompts to set your Atlassian domain, email, and API token.
+Generate an API token at [id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
 
 ## Installation
 
