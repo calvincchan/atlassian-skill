@@ -1,6 +1,6 @@
 ---
 name: atlassian
-description: Jira + Bitbucket + Confluence operations via atlassian-cli. Use for creating/updating Jira issues, transitioning statuses, creating Bitbucket PRs, or reading/writing Confluence pages, spaces, and blog posts.
+description: Jira + Bitbucket + Confluence operations via atlassian-cli. Use this skill whenever the user mentions Jira issues, tickets, sprints, transitions, Bitbucket pull requests, branches, or repos, or Confluence pages, spaces, or blog posts — even if they don't explicitly ask for CLI commands. Covers creating/updating issues, bulk transitions, PR lifecycle, and full Confluence content management.
 triggers:
   - "create jira issue"
   - "update jira"
@@ -76,10 +76,11 @@ Add `.atlassianrc` to `.gitignore` if not already present.
 
 ## Command References
 
-- Jira operations: `~/.claude/skills/atlassian/jira.md`
-- Bitbucket operations: `~/.claude/skills/atlassian/bitbucket.md`
-- Confluence operations: `~/.claude/skills/atlassian/confluence.md`
-- ADF converter: `~/.claude/skills/atlassian/md-to-adf.ts`
+After skill install, these live at `~/.claude/skills/atlassian/`:
+- Jira operations: `jira.md`
+- Bitbucket operations: `bitbucket.md`
+- Confluence operations: `confluence.md`
+- ADF converter: `md-to-adf.ts`
 
 ## Format Rules by Product
 

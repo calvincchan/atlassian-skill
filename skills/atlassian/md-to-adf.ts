@@ -2,8 +2,8 @@
 /**
  * md-to-adf.ts — convert Markdown to Atlassian Document Format (ADF) JSON.
  * No external dependencies. Run with Bun:
- *   bun docs/agents/md-to-adf.ts < input.md
- *   bun docs/agents/md-to-adf.ts input.md
+ *   bun ~/.claude/skills/atlassian/md-to-adf.ts < input.md
+ *   bun ~/.claude/skills/atlassian/md-to-adf.ts input.md
  */
 
 // ---------------------------------------------------------------------------

@@ -1,6 +1,8 @@
 # Jira Commands
 
-Requires `atlassian-cli`. Coordinates from `.atlassianrc` (see `atlassian.md`).
+Requires `atlassian-cli`. Coordinates from `.atlassianrc` (see `SKILL.md`).
+
+Official docs: https://atlassiancli.com/jira/
 
 ## Issue Operations
 
@@ -53,6 +55,7 @@ Jira accepts ADF JSON only for rich descriptions. Use the bundled converter:
 
 ```sh
 # From a heredoc / string
+# Path assumes default skill install: ~/.claude/skills/atlassian/ — adjust if installed elsewhere
 adf=$(printf '## Summary\n\n- item 1\n- item 2' | bun ~/.claude/skills/atlassian/md-to-adf.ts)
 atlassian-cli jira issue create --project LRIS --issue-type Story \
   --summary "My issue" --field "description=$adf"

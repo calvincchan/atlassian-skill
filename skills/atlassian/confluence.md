@@ -2,6 +2,8 @@
 
 Requires `atlassian-cli confluence`. Coordinates from `.atlassianrc` (see `SKILL.md`).
 
+Official docs: https://atlassiancli.com/confluence/
+
 ## Body Format
 
 Confluence accepts **HTML storage format** — not Markdown, not ADF.
@@ -78,8 +80,8 @@ atlassian-cli confluence page versions <PAGE-ID>
 ### Labels
 
 ```sh
-atlassian-cli confluence page add-label <PAGE-ID> --label <label>
-atlassian-cli confluence page remove-label <PAGE-ID> --label <label>
+atlassian-cli confluence page add-label <PAGE-ID> <label> [<label2> ...]
+atlassian-cli confluence page remove-label <PAGE-ID> <label>
 ```
 
 ### Comments
@@ -115,7 +117,7 @@ atlassian-cli confluence blog delete <BLOG-ID>
 ## Attachment Operations
 
 ```sh
-atlassian-cli confluence attachment list --page-id <PAGE-ID>
+atlassian-cli confluence attachment list <PAGE-ID>
 atlassian-cli confluence attachment get <ATTACHMENT-ID>
 atlassian-cli confluence attachment upload \
   --page-id <PAGE-ID> --file ./diagram.png
@@ -127,9 +129,9 @@ atlassian-cli confluence attachment delete <ATTACHMENT-ID>
 ## Search
 
 ```sh
-# CQL (most powerful)
+# CQL (most powerful) — CQL query is a positional argument
 atlassian-cli confluence search cql \
-  --cql "space = DEV AND type = page AND title ~ \"api\"" \
+  "space = DEV AND type = page AND title ~ \"api\"" \
   [--limit <N>]
 
 # Plain text
