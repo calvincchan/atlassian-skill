@@ -1,6 +1,6 @@
 ---
 name: atlassian
-description: Jira + Bitbucket operations via atlassian-cli. Use for creating/updating Jira issues, transitioning statuses, creating Bitbucket PRs, or any Atlassian workspace task.
+description: Jira + Bitbucket + Confluence operations via atlassian-cli. Use for creating/updating Jira issues, transitioning statuses, creating Bitbucket PRs, or reading/writing Confluence pages, spaces, and blog posts.
 triggers:
   - "create jira issue"
   - "update jira"
@@ -8,11 +8,15 @@ triggers:
   - "create PR"
   - "bitbucket pull request"
   - "jira ticket"
+  - "confluence page"
+  - "confluence space"
+  - "confluence blog"
+  - "confluence search"
 ---
 
 # Atlassian Skill
 
-Jira + Bitbucket operations via `atlassian-cli`. No other tools.
+Jira + Bitbucket + Confluence operations via `atlassian-cli`. No other tools.
 
 ## Guardrails
 
@@ -74,4 +78,13 @@ Add `.atlassianrc` to `.gitignore` if not already present.
 
 - Jira operations: `~/.claude/skills/atlassian/jira.md`
 - Bitbucket operations: `~/.claude/skills/atlassian/bitbucket.md`
+- Confluence operations: `~/.claude/skills/atlassian/confluence.md`
 - ADF converter: `~/.claude/skills/atlassian/md-to-adf.ts`
+
+## Format Rules by Product
+
+| Product    | Body format             | Note                          |
+|------------|-------------------------|-------------------------------|
+| Jira       | ADF JSON                | Use `md-to-adf.ts` converter  |
+| Bitbucket  | Plain Markdown          | No conversion needed          |
+| Confluence | HTML storage format     | Pass as file path via `--body`|
