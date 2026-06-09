@@ -4,6 +4,21 @@ Requires `atlassian-cli`. Coordinates from `.atlassianrc` (see `SKILL.md`).
 
 Official docs: https://atlassiancli.com/jira/
 
+## Known gotcha: `issue update` always exits 1
+
+Jira's PUT `/issue` returns **204 No Content**. `atlassian-cli` tries to decode the body as JSON and always fails:
+
+```
+ERROR Failed to parse JSON response: error decoding response body
+Error: Failed to update issue LRIS-210: Invalid response format: error decoding response body
+```
+
+**The update succeeds.** Ignore the error. Always verify with a follow-up `issue get`:
+
+```sh
+atlassian-cli jira issue get <ISSUE-KEY>
+```
+
 ## Issue Operations
 
 ```sh
@@ -25,7 +40,9 @@ atlassian-cli jira issue search --jql "<JQL>"
 atlassian-cli jira issue update <ISSUE-KEY> --summary "<new summary>"
 
 # Update description (ADF — see below)
-atlassian-cli jira issue update <ISSUE-KEY> --field "description=$adf"
+# Both --description and --field "description=$adf" work identically.
+# Both exit 1 due to the 204 gotcha above — update still applies.
+atlassian-cli jira issue update <ISSUE-KEY> --description "$adf"
 
 # Comment
 atlassian-cli jira issue comments add <ISSUE-KEY> --body "<text>"
@@ -65,7 +82,7 @@ adf=$(bun ~/.claude/skills/atlassian/md-to-adf.ts description.md)
 atlassian-cli jira issue update LRIS-123 --field "description=$adf"
 ```
 
-Use `--field "description=<adf>"` — not `--description`, which only accepts plain text.
+Both `--description "$adf"` and `--field "description=$adf"` accept ADF JSON despite the help text saying `--description` is "plain text only". Either works.
 
 ## Output Formats
 
